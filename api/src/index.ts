@@ -6,6 +6,7 @@ import { PrismaClient } from "@prisma/client";
 import promptRoutes from "./routes/promptRoutes";
 import choiceRoutes from "./routes/choiceRoutes";
 import entryRoutes from "./routes/entryRoutes";
+import { errorHandler } from "./middleware/errorHandler";
 
 dotenv.config({ path: ".env" });
 
@@ -27,7 +28,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 // Health check endpoint
 app.get("/health", (req: Request, res: Response) => {
-  res.json({ status: "ok" });
+  res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
 // Routes
@@ -35,17 +36,20 @@ app.use("/prompts", promptRoutes);
 app.use("/choices", choiceRoutes);
 app.use("/entries", entryRoutes);
 
-// Error handling middleware (must be last)
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.error(`[ERROR] ${err.message}`, err.stack);
-  res.status(err.status || 500).json({
-    error: err.message || "Internal server error",
-  });
+// 404 handler
+app.use((req: Request, res: Response) => {
+  res.status(404).json({ error: "Not found" });
 });
+
+// Error handling middleware (must be last)
+app.use(errorHandler);
 
 // Graceful shutdown
 const server = app.listen(port, () => {
-  console.log(`[Aura API] Server is running at http://localhost:${port}`);
+  console.log(`[Aura API] ✅ Server running at http://localhost:${port}`);
+  console.log(
+    `[Aura API] Database: ${process.env.DATABASE_URL || "file:./dev.db"}`,
+  );
 });
 
 process.on("SIGTERM", async () => {
@@ -53,6 +57,17 @@ process.on("SIGTERM", async () => {
   server.close(async () => {
     console.log("HTTP server closed");
     await prisma.$disconnect();
+    console.log("Database connection closed");
+    process.exit(0);
+  });
+});
+
+process.on("SIGINT", async () => {
+  console.log("SIGINT signal received: closing HTTP server");
+  server.close(async () => {
+    console.log("HTTP server closed");
+    await prisma.$disconnect();
+    console.log("Database connection closed");
     process.exit(0);
   });
 });

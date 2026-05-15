@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { ErrorBoundary } from "./src/components/ErrorBoundary";
 
 import DecideScreen from "./src/features/decide/DecideScreen";
 import JournalScreen from "./src/features/journal/JournalScreen";
@@ -18,25 +19,27 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-              animationEnabled: true,
-            }}
-          >
-            <Stack.Screen
-              name="Decide"
-              component={DecideScreen}
-              options={{ animationEnabled: false }}
-            />
-            <Stack.Screen name="Journal" component={JournalScreen} />
-            <Stack.Screen name="History" component={HistoryScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
+    <ErrorBoundary>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false,
+                animationEnabled: true,
+              }}
+            >
+              <Stack.Screen
+                name="Decide"
+                component={DecideScreen}
+                options={{ animationEnabled: false }}
+              />
+              <Stack.Screen name="Journal" component={JournalScreen} />
+              <Stack.Screen name="History" component={HistoryScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
+    </ErrorBoundary>
   );
 }

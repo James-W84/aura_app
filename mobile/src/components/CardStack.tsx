@@ -8,7 +8,7 @@ import {
   ViewStyle,
 } from "react-native";
 import * as Haptics from "expo-haptics";
-import { Prompt } from "../../types";
+import { Prompt } from "../types";
 
 interface CardStackProps {
   cards: Prompt[];
@@ -102,7 +102,7 @@ export const CardStack = ({
           }).start();
         }
       },
-    })
+    }),
   ).current;
 
   const rotate = rotateValue.interpolate({

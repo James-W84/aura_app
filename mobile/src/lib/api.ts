@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
-import * as SecureStore from "expo-secure-store";
 
 const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:5000";
 
@@ -23,7 +22,7 @@ class ApiClient {
       },
       (error) => {
         return Promise.reject(error);
-      }
+      },
     );
 
     // Response interceptor
@@ -34,7 +33,7 @@ class ApiClient {
         if (error.response) {
           console.error(
             `API Error: ${error.response.status}`,
-            error.response.data
+            error.response.data,
           );
         } else if (error.request) {
           console.error("No response received:", error.request);
@@ -42,7 +41,7 @@ class ApiClient {
           console.error("Request error:", error.message);
         }
         return Promise.reject(error);
-      }
+      },
     );
   }
 

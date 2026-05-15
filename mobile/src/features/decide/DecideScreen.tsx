@@ -19,8 +19,14 @@ type Props = NativeStackScreenProps<RootStackParamList, "Decide">;
 
 export default function DecideScreen({ navigation }: Props) {
   const userId = useUserStore((state) => state.currentUserId);
-  const { prompts, currentIndex, loading, error, fetchPrompts, handleDecision } =
-    usePromptStore();
+  const {
+    prompts,
+    currentIndex,
+    loading,
+    error,
+    fetchPrompts,
+    handleDecision,
+  } = usePromptStore();
 
   useEffect(() => {
     fetchPrompts(userId);
@@ -57,7 +63,9 @@ export default function DecideScreen({ navigation }: Props) {
     return (
       <View style={styles.centerContainer}>
         <Text style={styles.title}>All caught up!</Text>
-        <Text style={styles.subtitle}>Come back tomorrow for more prompts.</Text>
+        <Text style={styles.subtitle}>
+          Come back tomorrow for more prompts.
+        </Text>
         <TouchableOpacity
           style={styles.refreshButton}
           onPress={() => fetchPrompts(userId)}

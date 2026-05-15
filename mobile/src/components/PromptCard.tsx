@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import { COLORS, BORDER_RADIUS, SPACING, SHADOWS } from "../../lib/theme";
-import { Prompt } from "../../types";
+import { COLORS, BORDER_RADIUS, SPACING, SHADOWS } from "../lib/theme";
+import { Prompt } from "../types";
 
 interface PromptCardProps {
   prompt: Prompt;

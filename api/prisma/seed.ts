@@ -17,21 +17,36 @@ const samplePrompts = [
     content: "Write about a challenge you overcame recently.",
     category: "wellness",
   },
-  { content: "If you could tell your younger self one thing, what would it be?", category: "reflection" },
-  { content: "What's one thing you want to learn this week?", category: "creative" },
+  {
+    content: "If you could tell your younger self one thing, what would it be?",
+    category: "reflection",
+  },
+  {
+    content: "What's one thing you want to learn this week?",
+    category: "creative",
+  },
   { content: "Describe your perfect morning routine.", category: "wellness" },
   { content: "What brings you peace?", category: "mental" },
   { content: "Write a letter to your future self.", category: "creative" },
   { content: "What relationships matter most to you?", category: "reflection" },
   { content: "What did you appreciate about today?", category: "gratitude" },
-  { content: "Describe a place where you feel most calm.", category: "wellness" },
+  {
+    content: "Describe a place where you feel most calm.",
+    category: "wellness",
+  },
   { content: "What would you do if you weren't afraid?", category: "mental" },
   { content: "Write about a person who inspires you.", category: "creative" },
   { content: "How have you grown this year?", category: "reflection" },
-  { content: "What's something you're looking forward to?", category: "gratitude" },
+  {
+    content: "What's something you're looking forward to?",
+    category: "gratitude",
+  },
   { content: "Describe your ideal week.", category: "wellness" },
   { content: "What does success mean to you?", category: "mental" },
-  { content: "Write about a memory that makes you smile.", category: "creative" },
+  {
+    content: "Write about a memory that makes you smile.",
+    category: "creative",
+  },
 ];
 
 async function main() {

@@ -32,7 +32,7 @@ model Prompt {
 model Choice {
   userId    Int
   promptId  Int
-  decision  String   // REJECT, ACCEPT, DELAY
+  decision  String // REJECT, ACCEPT, DELAY
   createdAt DateTime @default(now())
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
