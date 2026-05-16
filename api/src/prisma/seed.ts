@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { uuid, uuidv4 } from "zod/v4";
 
 const prisma = new PrismaClient();
 
@@ -65,11 +66,12 @@ async function main() {
   console.log(`✅ User created: ${user.name}`);
 
   // Create prompts
-  for (const prompt of samplePrompts) {
+  for (let i = 0; i < samplePrompts.length; i++) {
+    const prompt = samplePrompts[i];
     await prisma.prompt.upsert({
-      where: { id: parseInt(prompt.content.slice(0, 2)) }, // Simple ID generation
+      where: { id: i + 1 },
       update: {},
-      create: prompt,
+      create: { ...prompt, id: i + 1 },
     });
   }
 
