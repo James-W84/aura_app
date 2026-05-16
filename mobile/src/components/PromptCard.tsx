@@ -40,8 +40,8 @@ export const PromptCard = ({ prompt, onPress }: PromptCardProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: Dimensions.get("window").width - SPACING.md * 2,
-    height: 400,
+    width: Dimensions.get("window").width - SPACING.lg * 2,
+    height: 500,
     backgroundColor: COLORS.card,
     borderRadius: BORDER_RADIUS.glass,
     borderWidth: 1,

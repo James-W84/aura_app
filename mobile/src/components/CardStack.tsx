@@ -74,7 +74,7 @@ export const CardStack = ({
           onSwipeLeft(currentCard);
           swiped = true;
         }
-        // Up swipe (DELAY)
+        // Up swipe (NOT NOW)
         else if (dy < -SWIPE_THRESHOLD) {
           onSwipeUp(currentCard);
           swiped = true;

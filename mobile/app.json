@@ -23,8 +23,6 @@
         "backgroundColor": "#F5F5F2"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "web": {}
   }
 }

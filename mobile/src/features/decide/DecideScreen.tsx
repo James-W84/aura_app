@@ -94,7 +94,7 @@ export default function DecideScreen({ navigation }: Props) {
       <View style={styles.footer}>
         <Text style={styles.hint}>← Reject</Text>
         <Text style={styles.hint}>Accept →</Text>
-        <Text style={styles.hint}>↑ Delay</Text>
+        <Text style={styles.hint}>↑ Not Now</Text>
       </View>
 
       {error && (
