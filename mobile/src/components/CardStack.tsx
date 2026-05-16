@@ -7,7 +7,6 @@ import {
   Dimensions,
   ViewStyle,
 } from "react-native";
-import * as Haptics from "expo-haptics";
 import { Prompt } from "../types";
 
 interface CardStackProps {
@@ -67,19 +66,16 @@ export const CardStack = ({
 
         // Right swipe (ACCEPT)
         if (dx > SWIPE_THRESHOLD) {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
           onSwipeRight(currentCard);
           swiped = true;
         }
         // Left swipe (REJECT)
         else if (dx < -SWIPE_THRESHOLD) {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
           onSwipeLeft(currentCard);
           swiped = true;
         }
         // Up swipe (DELAY)
         else if (dy < -SWIPE_THRESHOLD) {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           onSwipeUp(currentCard);
           swiped = true;
         }

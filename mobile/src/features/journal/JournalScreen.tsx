@@ -8,7 +8,6 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
-import * as Haptics from "expo-haptics";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../../App";
 import { usePromptStore } from "../../store/usePromptStore";
@@ -75,10 +74,6 @@ export default function JournalScreen({ route, navigation }: Props) {
     }
 
     try {
-      await Haptics.notificationAsync(
-        Haptics.NotificationFeedbackType.Success
-      );
-
       // Show success feedback
       setTimeout(() => {
         clearCurrent();
@@ -135,9 +130,7 @@ export default function JournalScreen({ route, navigation }: Props) {
             </View>
           )}
           {autoSaveStatus === "saved" && (
-            <Text style={[styles.statusText, { color: "#4CAF50" }]}>
-              Saved
-            </Text>
+            <Text style={[styles.statusText, { color: "#4CAF50" }]}>Saved</Text>
           )}
           {autoSaveStatus === "error" && (
             <Text style={[styles.statusText, { color: "#F44336" }]}>

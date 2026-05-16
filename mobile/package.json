@@ -18,7 +18,6 @@
     "@types/react-navigation": "^3.0.8",
     "axios": "^1.4.0",
     "expo": "^49.0.0",
-    "expo-haptics": "^12.0.1",
     "expo-secure-store": "^55.0.14",
     "expo-splash-screen": "^0.20.5",
     "nativewind": "^2.0.11",
